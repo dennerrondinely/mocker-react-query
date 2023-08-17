@@ -2,13 +2,16 @@ import axios from "axios";
 
 interface CreateApiParams {
   baseURL: string;
+  mock?: boolean;
 }
 
-export const createApi = ({ baseURL }: CreateApiParams) => {
+export const createApi = ({ baseURL, mock: mockService }: CreateApiParams) => {
   const api = axios.create();
 
   const getUrl = (url: string, mock?: boolean) => {
-    const apiBaseUrl = mock ? '' : baseURL;
+    const isMock = mockService || mock;
+    const apiBaseUrl = isMock ? '' : baseURL;
+    
     return apiBaseUrl + url;
   };
 
