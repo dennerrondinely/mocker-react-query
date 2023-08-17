@@ -5,13 +5,13 @@ interface CreateApiParams {
   mock?: boolean;
 }
 
-export const createApi = ({ baseURL, mock: mockService }: CreateApiParams) => {
-  const api = axios.create();
+const api = axios.create();
 
+export const createApi = ({ baseURL, mock: mockService }: CreateApiParams) => {
   const getUrl = (url: string, mock?: boolean) => {
     const isMock = mockService || mock;
     const apiBaseUrl = isMock ? '' : baseURL;
-    
+
     return apiBaseUrl + url;
   };
 
